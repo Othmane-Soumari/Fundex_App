@@ -94,31 +94,27 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Container(),
                 flex: 2,
               ),
-              SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 64,
-              ),
-              const SizedBox(
-                height: 64,
+              Image.asset(
+                'assets/logo.png',
+                height: 150,
               ),
               Stack(
                 children: [
                   _image != null
                       ? CircleAvatar(
-                          radius: 64,
+                          radius: 50,
                           backgroundImage: MemoryImage(_image!),
                           backgroundColor: Colors.red,
                         )
                       : const CircleAvatar(
-                          radius: 64,
+                          radius: 50,
                           backgroundImage: NetworkImage(
                               'https://i.stack.imgur.com/l60Hf.png'),
                           backgroundColor: Colors.red,
                         ),
                   Positioned(
                     bottom: -10,
-                    left: 80,
+                    left: 60,
                     child: IconButton(
                       onPressed: selectImage,
                       icon: const Icon(Icons.add_a_photo),
@@ -127,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               const SizedBox(
-                height: 24,
+                height: 15,
               ),
               TextFieldInput(
                 hintText: 'Enter your username',
@@ -167,6 +163,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: !_isLoading
                       ? const Text(
                           'Sign up',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         )
                       : const CircularProgressIndicator(
                           color: primaryColor,
@@ -209,8 +207,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: const Text(
                         ' Login.',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, color: Colors.green),
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),

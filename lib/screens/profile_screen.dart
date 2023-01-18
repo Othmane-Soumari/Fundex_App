@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: mobileBackgroundColor,
+              backgroundColor: Color.fromARGB(255, 71, 117, 89),
               title: Text(
                 userData['username'],
               ),
@@ -85,15 +85,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, bottom: 20),
+                        child: Center(
+                          child: CircleAvatar(
                             backgroundColor: Colors.grey,
                             backgroundImage: NetworkImage(
                               userData['photoUrl'],
                             ),
                             radius: 40,
                           ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Text(
+                          userData['username'],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(
+                          bottom: 20,
+                        ),
+                        child: Text(
+                          userData['bio'],
+                        ),
+                      ),
+                      Row(
+                        children: [
                           Expanded(
                             flex: 1,
                             child: Column(
@@ -153,9 +178,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               )
                                             : FollowButton(
                                                 text: 'Follow',
-                                                backgroundColor: Colors.blue,
+                                                backgroundColor: Colors.green,
                                                 textColor: Colors.white,
-                                                borderColor: Colors.blue,
+                                                borderColor: Colors.green,
                                                 function: () async {
                                                   await FireStoreMethods()
                                                       .followUser(
@@ -176,27 +201,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ],
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                        ),
-                        child: Text(
-                          userData['username'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(
-                          top: 1,
-                        ),
-                        child: Text(
-                          userData['bio'],
-                        ),
                       ),
                     ],
                   ),

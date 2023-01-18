@@ -23,22 +23,14 @@ class _FeedScreenState extends State<FeedScreen> {
       appBar: width > webScreenSize
           ? null
           : AppBar(
-              backgroundColor: mobileBackgroundColor,
+              backgroundColor: Color.fromARGB(255, 71, 117, 89),
               centerTitle: false,
-              title: SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 32,
+              title: Text(
+                'Fundex',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.messenger_outline,
-                    color: primaryColor,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
             ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('posts').snapshots(),

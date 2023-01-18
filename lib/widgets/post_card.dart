@@ -201,53 +201,7 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
-          // LIKE, COMMENT SECTION OF THE POST
-          Row(
-            children: <Widget>[
-              LikeAnimation(
-                isAnimating: widget.snap['likes'].contains(user.uid),
-                smallLike: true,
-                child: IconButton(
-                  icon: widget.snap['likes'].contains(user.uid)
-                      ? const Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        )
-                      : const Icon(
-                          Icons.favorite_border,
-                        ),
-                  onPressed: () => FireStoreMethods().likePost(
-                    widget.snap['postId'].toString(),
-                    user.uid,
-                    widget.snap['likes'],
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.comment_outlined,
-                ),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => CommentsScreen(
-                      postId: widget.snap['postId'].toString(),
-                    ),
-                  ),
-                ),
-              ),
-              IconButton(
-                  icon: const Icon(
-                    Icons.send,
-                  ),
-                  onPressed: () {}),
-              Expanded(
-                  child: Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    icon: const Icon(Icons.bookmark_border), onPressed: () {}),
-              ))
-            ],
-          ),
+
           //DESCRIPTION AND NUMBER OF COMMENTS
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -255,36 +209,71 @@ class _PostCardState extends State<PostCard> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                DefaultTextStyle(
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2!
-                        .copyWith(fontWeight: FontWeight.w800),
-                    child: Text(
-                      '${widget.snap['likes'].length} likes',
-                      style: Theme.of(context).textTheme.bodyText2,
-                    )),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
-                    top: 8,
+                    top: 12,
                   ),
                   child: RichText(
                     text: TextSpan(
                       style: const TextStyle(color: primaryColor),
                       children: [
                         TextSpan(
-                          text: widget.snap['username'].toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(
                           text: ' ${widget.snap['description']}',
+                          style: const TextStyle(fontSize: 17, height: 1.4),
                         ),
                       ],
                     ),
                   ),
+                ),
+                // LIKE, COMMENT SECTION OF THE POST
+                Row(
+                  children: <Widget>[
+                    LikeAnimation(
+                      isAnimating: widget.snap['likes'].contains(user.uid),
+                      smallLike: true,
+                      child: IconButton(
+                        icon: widget.snap['likes'].contains(user.uid)
+                            ? const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                            : const Icon(
+                                Icons.favorite_border,
+                              ),
+                        onPressed: () => FireStoreMethods().likePost(
+                          widget.snap['postId'].toString(),
+                          user.uid,
+                          widget.snap['likes'],
+                        ),
+                      ),
+                    ),
+                    DefaultTextStyle(
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2!
+                            .copyWith(fontWeight: FontWeight.w800),
+                        child: Text(
+                          '${widget.snap['likes'].length} likes',
+                          style: Theme.of(context).textTheme.bodyText2,
+                        )),
+                    Expanded(
+                        child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.comment_outlined,
+                        ),
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CommentsScreen(
+                              postId: widget.snap['postId'].toString(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ))
+                  ],
                 ),
                 InkWell(
                   child: Container(

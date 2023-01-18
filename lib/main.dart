@@ -17,12 +17,11 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyC5JsR9lAhin5COgU9uRN8v2EKL_QOlmDU",
-        appId: "1:1035837620889:web:d9dc749134284a9fdeae08",
-        messagingSenderId: "1035837620889",
-        projectId: "fundex-7bc19",
-        storageBucket: 'fundex-7bc19.appspot.com'
-      ),
+          apiKey: "AIzaSyC5JsR9lAhin5COgU9uRN8v2EKL_QOlmDU",
+          appId: "1:1035837620889:web:d9dc749134284a9fdeae08",
+          messagingSenderId: "1035837620889",
+          projectId: "fundex-7bc19",
+          storageBucket: 'fundex-7bc19.appspot.com'),
     );
   } else {
     await Firebase.initializeApp();
@@ -37,12 +36,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider(),),
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Instagram Clone',
-        theme: ThemeData.dark().copyWith(
+        title: 'Fundex',
+        theme: ThemeData(
           scaffoldBackgroundColor: mobileBackgroundColor,
         ),
         home: StreamBuilder(

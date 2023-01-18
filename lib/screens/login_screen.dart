@@ -74,13 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(),
                 flex: 2,
               ),
-              SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 64,
-              ),
-              const SizedBox(
-                height: 64,
+              Image.asset(
+                'assets/logo.png',
+                height: 250,
               ),
               TextFieldInput(
                 hintText: 'Enter your email',
@@ -104,6 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: !_isLoading
                       ? const Text(
                           'Log in',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         )
                       : const CircularProgressIndicator(
                           color: primaryColor,
@@ -146,8 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         ' Signup.',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, color: Colors.green),
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
